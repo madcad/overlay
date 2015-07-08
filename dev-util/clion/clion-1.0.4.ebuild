@@ -1,12 +1,12 @@
 EAPI="4"
 inherit eutils
-DESCRIPTION="PhpStorm"
+DESCRIPTION="Clion C++ IDE"
 HOMEPAGE="www.jetbrains.com/clion/"
-SRC_URI="http://download.jetbrains.com/cpp/clion-141.102.4.tar.gz"
+SRC_URI="http://download.jetbrains.com/cpp/clion-${PV}.tar.gz"
 KEYWORDS="~x86 ~amd64"
 DEPEND="virtual/jdk"
 RDEPEND="${DEPEND}"
-SLOT="eap"
+SLOT="1"
 S=${WORKDIR}
 
 src_install() {

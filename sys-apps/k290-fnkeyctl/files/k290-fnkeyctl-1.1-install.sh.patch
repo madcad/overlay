@@ -1,0 +1,14 @@
+diff -rupN a/install.sh b/install.sh
+--- a/install.sh	2015-07-22 15:36:25.000000000 +0200
++++ b/install.sh	2015-07-22 15:37:00.000000000 +0200
+@@ -1,6 +1,7 @@
+ #!/bin/sh
+ 
+-[ -f ./k290_fnkeyctl ] || ./build.sh || (echo "Could not build" && exit)
++mkdir -p ${D}usr/local/sbin/
++mkdir -p ${D}lib/udev/rules.d
+ 
+-install -m 755 -o root k290_fnkeyctl /usr/local/sbin/
+-install -m 644 -o root 99-k290-config.rules /etc/udev/rules.d/
++install -m 755 -o root k290_fnkeyctl ${D}usr/local/sbin/
++install -m 644 -o root 99-k290-config.rules ${D}lib/udev/rules.d

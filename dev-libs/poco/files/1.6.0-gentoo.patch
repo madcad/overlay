@@ -1,0 +1,49 @@
+diff -Nur poco-1.6.0-all.orig/components poco-1.6.0-all.patch/components
+--- poco-1.6.0-all.orig/components	2014-12-22 09:04:56.000000000 +0100
++++ poco-1.6.0-all.patch/components	2015-07-27 11:57:28.602931409 +0200
+@@ -1,17 +1,9 @@
+-CppUnit
+-CppUnit/WinTestRunner
+ Foundation
+ XML
+ JSON
+ Util
+ Net
+-Crypto
+-NetSSL_OpenSSL
+ Data
+-Data/SQLite
+-Data/ODBC
+-Data/MySQL
+-MongoDB
+ Zip
+ PageCompiler
+ PageCompiler/File2Page
+diff -Nur poco-1.6.0-all.orig/Makefile poco-1.6.0-all.patch/Makefile
+--- poco-1.6.0-all.orig/Makefile	2014-12-22 09:04:56.000000000 +0100
++++ poco-1.6.0-all.patch/Makefile	2015-07-27 11:39:05.287235757 +0200
+@@ -37,7 +37,7 @@
+ 
+ install: libexecs
+ 	mkdir -p $(INSTALLDIR)/include/Poco
+-	mkdir -p $(INSTALLDIR)/lib
++	mkdir -p $(INSTALLDIR)/$(LIBDIR)
+ 	mkdir -p $(INSTALLDIR)/bin
+ 	for comp in $(COMPONENTS) ; do \
+ 		if [ -d "$(POCO_BASE)/$$comp/include" ] ; then \
+@@ -47,11 +47,11 @@
+ 			find $(POCO_BUILD)/$$comp/bin -perm -700 -type f -exec cp -f {} $(INSTALLDIR)/bin \; ; \
+ 		fi ; \
+ 	done
+-	find $(POCO_BUILD)/lib -name "libPoco*" -type f -exec cp -f {} $(INSTALLDIR)/lib \;
+-	find $(POCO_BUILD)/lib -name "libPoco*" -type l -exec cp -Rf {} $(INSTALLDIR)/lib \;
++	find $(POCO_BUILD)/$(LIBDIR) -name "libPoco*" -type f -exec cp -f {} $(INSTALLDIR)/$(LIBDIR) \;
++	find $(POCO_BUILD)/$(LIBDIR) -name "libPoco*" -type l -exec cp -Rf {} $(INSTALLDIR)/$(LIBDIR) \;
+ 
+-libexecs =  Foundation-libexec XML-libexec JSON-libexec Util-libexec Net-libexec Crypto-libexec NetSSL_OpenSSL-libexec Data-libexec Data/SQLite-libexec Data/ODBC-libexec Data/MySQL-libexec MongoDB-libexec Zip-libexec PageCompiler-libexec PageCompiler/File2Page-libexec
+-tests    =  Foundation-tests XML-tests JSON-tests Util-tests Net-tests Crypto-tests NetSSL_OpenSSL-tests Data-tests Data/SQLite-tests Data/ODBC-tests Data/MySQL-tests MongoDB-tests Zip-tests
++libexecs =  Foundation-libexec XML-libexec JSON-libexec Util-libexec Net-libexec Zip-libexec PageCompiler-libexec PageCompiler/File2Page-libexec
++tests    =  Foundation-tests XML-tests JSON-tests Util-tests Net-tests Zip-tests
+ samples  =  Foundation-samples XML-samples JSON-samples Util-samples Net-samples Crypto-samples NetSSL_OpenSSL-samples Data-samples MongoDB-samples Zip-samples PageCompiler-samples
+ cleans   =  Foundation-clean XML-clean JSON-clean Util-clean Net-clean Crypto-clean NetSSL_OpenSSL-clean Data-clean Data/SQLite-clean Data/ODBC-clean Data/MySQL-clean MongoDB-clean Zip-clean PageCompiler-clean PageCompiler/File2Page-clean
+ 

@@ -60,6 +60,8 @@ src_install() {
 
 	make_wrapper "${exe}" "${dir}/bin/${MY_PN}.sh"
 	make_desktop_entry ${exe} "IntelliJ IDEA ${MY_PV}" "${exe}" "Development;IDE"
+    
+	newicon "bin/${MY_PN}.png" ${exe}.png
 
 	# recommended by: https://confluence.jetbrains.com/display/IDEADEV/Inotify+Watches+Limit
 	mkdir -p "${D}/etc/sysctl.d/"
